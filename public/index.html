@@ -920,7 +920,7 @@
                 <div class="tabs" id="tabs" role="tablist" aria-label="Álbumes de estudio"></div>
                 <div class="panel" id="panel" role="tabpanel">
                     <div class="bigyear" id="bigyear" aria-hidden="true"></div>
-                    <div class="info" id="info">
+                    <div class="info" id="album-info">
                         <div class="kicker" id="pYear"></div>
                         <h3 id="pTitle"></h3>
                         <p class="blurb" id="pBlurb"></p>
@@ -1194,7 +1194,7 @@
 
             var tabs = document.getElementById('tabs');
             var panel = document.getElementById('panel');
-            var info = document.getElementById('info');
+            var info = document.getElementById('album-info');
             var current = 4;
 
             albums.forEach(function (a, i) {
@@ -1247,9 +1247,9 @@
 
         async function getSaludo() {
             const respuesta = await fetch('/api/saludo')
-            const datos = respuesta.json()
+            const datos = await respuesta.json()
             let info = document.querySelector("#info")
-            info.innerHTML+= datos.mensaje;
+            info.insertAdjacentText('beforeend', datos.mensaje)
 
             console.log(datos)
         }
